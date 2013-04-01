@@ -4,20 +4,24 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'toneloc/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "toneloc"
+  spec.name          = 'toneloc'
   spec.version       = Toneloc::VERSION
-  spec.authors       = ["Joshua Moody"]
-  spec.email         = ["joshuajmoody@gmail.com"]
+  spec.authors       = ['Joshua Moody']
+  spec.email         = ['joshuajmoody@gmail.com']
   spec.description   = %q{TODO: Write a gem description}
   spec.summary       = %q{TODO: Write a gem summary}
-  spec.homepage      = ""
-  spec.license       = "MIT"
+  spec.homepage      = 'https://github.com/jmoody/toneloc.git'
+  spec.license       = 'THE BEER-WARE LICENSE'
 
   spec.files         = `git ls-files`.split($/)
   spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
-  spec.require_paths = ["lib"]
+  spec.require_paths = ['lib']
 
-  spec.add_development_dependency "bundler", "~> 1.3"
-  spec.add_development_dependency "rake"
+  spec.add_development_dependency 'bundler', '~> 1.3'
+  spec.add_development_dependency 'rake', '10.0.3'
+
+  spec.add_runtime_dependency 'fastercsv'
+  spec.add_runtime_dependency 'apfel'
+  
 end
