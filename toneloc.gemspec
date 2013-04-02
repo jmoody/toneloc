@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = Toneloc::VERSION
   spec.authors       = ['Joshua Moody']
   spec.email         = ['joshuajmoody@gmail.com']
-  spec.description   = %q{TODO: Write a gem description}
-  spec.summary       = %q{TODO: Write a gem summary}
+  spec.description   = %q{converts .strings files to and from .csv format}
+  spec.summary       = %q{converts .strings files to and from .csv format}
   spec.homepage      = 'https://github.com/jmoody/toneloc.git'
   spec.license       = 'THE BEER-WARE LICENSE'
 
@@ -23,5 +23,5 @@ Gem::Specification.new do |spec|
 
   spec.add_runtime_dependency 'fastercsv'
   spec.add_runtime_dependency 'apfel'
-  
+
 end
