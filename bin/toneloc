@@ -1,20 +1,9 @@
 #!/usr/bin/env ruby
 
-require 'rubygems'
+require File.join(File.dirname(__FILE__), 'toneloc_helpers')
 
 if ARGV.length == 0
   print_usage
   exit 0
 end
 
-def print_usage
-  puts <<EOF
-  toneloc #{Toneloc::VERSION}
-  Usage: toneloc <command> [strings | csv]
-  where <command> can be one of
-    validate
-      searches the current directory for [strings | csv] files to validate
-    help
-      prints more detailed help information
-EOF
-end

@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ['Joshua Moody']
   spec.email         = ['joshuajmoody@gmail.com']
   spec.description   = %q{converts .strings files to and from .csv format}
-  spec.summary       = %q{converts .strings files to and from .csv format}
+  spec.summary       = %q{summarized}
   spec.homepage      = 'https://github.com/jmoody/toneloc.git'
   spec.license       = 'THE BEER-WARE LICENSE'
 
