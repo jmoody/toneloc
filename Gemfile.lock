@@ -1,21 +1,25 @@
+GIT
+  remote: https://github.com/jmoody/apfel.git
+  revision: 467bf0c129aac94229b9601971ded0738959aa9a
+  branch: master
+  specs:
+    apfel (0.0.4)
+
 PATH
   remote: .
   specs:
     toneloc (0.0.1)
-      apfel
-      fastercsv
 
 GEM
   remote: https://rubygems.org/
   specs:
-    apfel (0.0.4)
-    fastercsv (1.5.5)
     rake (10.0.3)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
+  apfel!
   bundler (~> 1.3)
   rake (= 10.0.3)
   toneloc!
