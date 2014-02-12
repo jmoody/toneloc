@@ -5,7 +5,11 @@ require 'pathname'
 require 'apfel'
 require 'csv'
 
-require File.join(File.dirname(__FILE__), 'toneloc_helpers')
+require 'toneloc_helpers'
+
+include ToneLoc::BinHelpers
+include ToneLoc::ConvertStrings
+include ToneLoc::ConvertCSV
 
 if ARGV.length == 0
   print_usage
@@ -18,53 +22,24 @@ if cmd == 'help'
 elsif cmd == 'validate'
   sub_cmd = ARGV.shift
   exit 1 unless valid_sub_command sub_cmd
-  exit 1 if tmp_handle_csv sub_cmd
+
+  if sub_cmd == 'csv'
+    puts 'cannot validate csv files yet'
+    exit 1
+  end
 
   exit validate_strings
 
 elsif cmd == 'convert'
   sub_cmd = ARGV.shift
   exit 1 unless valid_sub_command sub_cmd
-  exit 1 if tmp_handle_csv sub_cmd
-  string_paths = collect_strings_paths
 
-  unless string_paths.empty?
-    cur_path = Dir.pwd.to_str
-    csv_dir = "#{cur_path}/csv"
-    unless Dir.exist? csv_dir
-      Dir.mkdir(csv_dir)
-    end
+  if sub_cmd == 'strings'
+    exit convert_string_files_to_csv
+  else
+    exit convert_csv_files_to_strings
   end
 
-
-  string_paths.each do |path|
-    # numbers is strict - csv ==> commas
-    # we are using tabs so we must use .txt extension
-    csv_file = "#{csv_dir}/#{File.basename(path, '.*')}.txt"
-
-    parsed = Apfel.parse(path)
-    unless parsed
-      puts "could not parse '#{path}'"
-      next
-    end
-
-    keys = parsed.keys
-    #cur_path = Pathname.new(Dir.pwd.to_str)
-    #rel_path = Pathname.new(path).relative_path_from(cur_path)
-    comments = parsed.comments(with_keys: false)
-    CSV.open(csv_file, 'w', :col_sep => "\t") do |csv|
-      keys.each_with_index do |item, index|
-        val = parsed.values[index]
-        comment = "#{comments[index]}"
-        ##array << [item, val, comment]
-        csv << [item, val, comment]
-      end
-    end
-
-
-    #hash = parsed.to_hash(with_comments: true)
-    #puts "parsed = '#{hash}}'"
-  end
 else
   print_usage
 end
