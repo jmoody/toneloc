@@ -26,3 +26,6 @@ __MACOSX
 # emacs turds
 (.*/)?\#[^/]*\#$
 
+# rbenv
+.ruby-version
+
