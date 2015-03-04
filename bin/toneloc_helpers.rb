@@ -121,6 +121,8 @@ module ToneLoc
       string_paths.each do |path|
         # numbers is strict - csv ==> commas
         # we are using tabs so we must use .txt extension
+        puts "path '#{path}'"
+
         csv_file = "#{csv_dir}/#{File.basename(path, '.*')}.txt"
 
         parsed = Apfel.parse(path)
@@ -129,18 +131,20 @@ module ToneLoc
           next
         end
 
+        puts parsed
+
         keys = parsed.keys
+        puts "keys count = '#{keys.count}'"
         #cur_path = Pathname.new(Dir.pwd.to_str)
         #rel_path = Pathname.new(path).relative_path_from(cur_path)
         comments = parsed.comments(with_keys: false)
-        CSV.open(csv_file, 'w', :col_sep => "\t") do |csv|
+        CSV.open(csv_file, 'w:utf-8', :col_sep => "\t") do |csv|
           keys.each_with_index do |item, index|
+
             val = parsed.values[index]
             comment = "#{comments[index]}"
-            ##array << [item, val, comment]
-            # todo convert strings should make 4 columns (key, base lang, < empty >, comment)
-            # todo convert strings should try to preserve newlines in comments
-            csv << [item, val, comment]
+            ## todo Apfel should try to preserve newlines in comments
+            csv << [item, val, '', comment]
           end
         end
       end
@@ -225,8 +229,6 @@ module ToneLoc
           end
         }
       end
-    #noinspection RubyUnnecessaryReturnStatement
-    return 0
     end
 
   end

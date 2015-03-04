@@ -5,7 +5,7 @@ require 'pathname'
 require 'apfel'
 require 'csv'
 
-require 'toneloc_helpers'
+require_relative './toneloc_helpers'
 
 include ToneLoc::BinHelpers
 include ToneLoc::ConvertStrings
@@ -35,9 +35,13 @@ elsif cmd == 'convert'
   exit 1 unless valid_sub_command sub_cmd
 
   if sub_cmd == 'strings'
-    exit convert_string_files_to_csv
+    convert_string_files_to_csv
+    exit 0
+  elsif sub_cmd == 'csv'
+    convert_csv_files_to_strings
+    exit 0
   else
-    exit convert_csv_files_to_strings
+    exit 1
   end
 
 else
